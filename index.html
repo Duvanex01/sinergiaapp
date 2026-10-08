@@ -1,917 +1,107 @@
-<!doctype html>
-<html lang="es" class="h-full">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pensamiento Computacional</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
-  <style>
-    * { font-family: 'Nunito', sans-serif; }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-    
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
-      50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
-    }
-    
-    @keyframes celebrate {
-      0% { transform: scale(1) rotate(0deg); }
-      25% { transform: scale(1.2) rotate(-5deg); }
-      50% { transform: scale(1.2) rotate(5deg); }
-      75% { transform: scale(1.2) rotate(-5deg); }
-      100% { transform: scale(1) rotate(0deg); }
-    }
-    
-    @keyframes slide-in {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .float-animation { animation: float 3s ease-in-out infinite; }
-    .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-    .celebrate { animation: celebrate 0.6s ease-in-out; }
-    .slide-in { animation: slide-in 0.5s ease-out forwards; }
-    
-    .command-block {
-      cursor: grab;
-      transition: all 0.2s ease;
-    }
-    .command-block:active { cursor: grabbing; }
-    .command-block:hover { transform: scale(1.05); }
-    
-    .grid-cell {
-      transition: all 0.3s ease;
-    }
-    
-    .robot-marker {
-      transition: all 0.4s ease;
-    }
-    
-    .star-icon {
-      filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.5));
-    }
-  </style>
-  <style>body { box-sizing: border-box; }</style>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
- </head>
- <body class="h-full overflow-auto">
-  <div id="app-container" class="min-h-full w-full bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-800"><!-- Welcome Screen -->
-   <div id="welcome-screen" class="min-h-full flex flex-col items-center justify-center p-6">
-    <div class="text-center max-w-lg">
-     <div class="float-animation mb-6">
-      <svg class="w-32 h-32 mx-auto" viewbox="0 0 100 100"><rect x="25" y="20" width="50" height="40" rx="8" fill="#818CF8" stroke="#C7D2FE" stroke-width="2" /> <rect x="30" y="28" width="15" height="10" rx="2" fill="#1E1B4B" /> <rect x="55" y="28" width="15" height="10" rx="2" fill="#1E1B4B" /> <circle cx="37" cy="33" r="3" fill="#34D399" /> <circle cx="62" cy="33" r="3" fill="#34D399" /> <rect x="40" y="45" width="20" height="3" rx="1" fill="#C7D2FE" /> <rect x="35" y="60" width="30" height="25" rx="4" fill="#6366F1" /> <rect x="20" y="65" width="8" height="15" rx="2" fill="#818CF8" /> <rect x="72" y="65" width="8" height="15" rx="2" fill="#818CF8" /> <rect x="38" y="85" width="10" height="12" rx="2" fill="#818CF8" /> <rect x="52" y="85" width="10" height="12" rx="2" fill="#818CF8" /> <circle cx="50" cy="15" r="5" fill="#FBBF24" />
-      </svg>
-     </div>
-     <h1 id="main-title" class="text-4xl font-extrabold text-white mb-3">Pensamiento Computacional</h1>
-     <p id="welcome-text" class="text-xl text-indigo-200 mb-8">¡Aprende a pensar como un programador!</p>
-     <div id="name-input-section" class="bg-white/10 backdrop-blur rounded-2xl p-6 mb-6"><label class="block text-indigo-200 text-lg mb-3">¿Cómo te llamas?</label> <input type="text" id="student-name-input" class="w-full px-4 py-3 rounded-xl bg-white/20 border-2 border-indigo-400 text-white placeholder-indigo-300 text-lg focus:outline-none focus:border-yellow-400" placeholder="Escribe tu nombre aquí">
-     </div><button id="start-btn" class="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-indigo-900 font-bold text-xl rounded-2xl shadow-lg hover:from-yellow-300 hover:to-orange-400 transition-all pulse-glow"> 🚀 ¡Comenzar Aventura! </button>
-     <div id="returning-user" class="hidden mt-6">
-      <p class="text-indigo-300 mb-2">¡Bienvenido de nuevo!</p><button id="continue-btn" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-500 transition-all"> Continuar Progreso </button>
-     </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrumentos RED - Jornadas Escolares Complementarias</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .btn {
+            display: block;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        footer {
+            margin-top: 32px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Instrumentos RED<br>Jornadas Escolares Complementarias</h1>
+        <div class="subtitle">Pensamiento Computacional</div>
+
+        <div class="links-container">
+            <a href="https://forms.gle/NfPPF8DuY37JCVM99" class="btn" target="_blank" rel="noopener noreferrer">Pre-test</a>
+            <a href="https://sinergiaedutic.my.canva.site/red-maestria" class="btn" target="_blank" rel="noopener noreferrer">RED (Sinergia EduTIC)</a>
+            <a href="https://forms.gle/QYPtXHxSMR8QQXA6A" class="btn" target="_blank" rel="noopener noreferrer">Post-test</a>
+        </div>
+
+        <footer>
+            Pensamiento Computacional &copy; 2026
+        </footer>
     </div>
-    <footer class="mt-12 pt-8 border-t border-indigo-700/50 text-center text-indigo-300 text-xs">
-     <p class="mb-2 font-semibold">Elaborado por:</p>
-     <p class="text-indigo-400">Katherine Ríos Posso</p>
-     <p class="text-indigo-400">Duván Esteban Benavides Perdomo</p>
-     <p class="text-indigo-400">Gustavo Adolfo Ospina Grajales</p>
-     <p class="text-indigo-400">Felipe Bañol Escobar</p>
-     <div class="mt-3 space-y-1">
-      <p><strong>Grupo 136</strong></p>
-      <p>Aplicaciones Móviles para la Enseñanza</p>
-      <p>Especialización en Didáctica y TIC</p>
-      <p>Facultad de Ciencias Sociales y Educación</p>
-      <p>Universidad de Cartagena</p>
-     </div>
-    </footer>
-   </div><!-- Main Menu -->
-   <div id="main-menu" class="hidden min-h-full p-6">
-    <div class="max-w-4xl mx-auto">
-     <header class="flex items-center justify-between mb-8">
-      <div class="flex items-center gap-3">
-       <svg class="w-12 h-12" viewbox="0 0 50 50"><rect x="12" y="10" width="26" height="20" rx="4" fill="#818CF8" /> <circle cx="20" cy="18" r="3" fill="#34D399" /> <circle cx="30" cy="18" r="3" fill="#34D399" /> <rect x="15" y="30" width="20" height="15" rx="3" fill="#6366F1" />
-       </svg>
-       <div>
-        <p class="text-indigo-300 text-sm">Hola,</p>
-        <p id="user-greeting" class="text-white font-bold text-lg">Estudiante</p>
-       </div>
-      </div>
-      <div class="flex items-center gap-2 bg-yellow-500/20 px-4 py-2 rounded-full">
-       <svg class="w-6 h-6 star-icon" viewbox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-       </svg><span id="total-stars" class="text-yellow-400 font-bold text-lg">0</span>
-      </div>
-     </header>
-     <div class="text-center mb-8">
-      <h2 class="text-3xl font-bold text-white mb-2">Módulos de Aprendizaje</h2>
-      <p class="text-indigo-300">Completa cada módulo para ganar estrellas</p>
-     </div>
-     <div class="grid gap-6"><!-- Module 1: Sequences -->
-      <div id="module-1" class="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-6 shadow-xl cursor-pointer hover:scale-[1.02] transition-all">
-       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-4">
-         <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-4xl">
-          📋
-         </div>
-         <div>
-          <h3 class="text-white font-bold text-xl">1. Exploración: Secuencias</h3>
-          <p class="text-emerald-100">Aprende a ordenar pasos lógicamente</p>
-         </div>
-        </div>
-        <div class="flex items-center gap-2">
-         <div id="module-1-stars" class="flex gap-1"></div>
-         <svg class="w-8 h-8 text-white/50" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" />
-         </svg>
-        </div>
-       </div>
-      </div><!-- Module 2: Algorithms -->
-      <div id="module-2" class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-6 shadow-xl cursor-pointer hover:scale-[1.02] transition-all">
-       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-4">
-         <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-4xl">
-          🤖
-         </div>
-         <div>
-          <h3 class="text-white font-bold text-xl">2. Aprendizaje: Algoritmos</h3>
-          <p class="text-blue-100">Descubre cómo funcionan las instrucciones</p>
-         </div>
-        </div>
-        <div class="flex items-center gap-2">
-         <div id="module-2-stars" class="flex gap-1"></div>
-         <svg class="w-8 h-8 text-white/50" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" />
-         </svg>
-        </div>
-       </div>
-      </div><!-- Module 3: Practice -->
-      <div id="module-3" class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-6 shadow-xl cursor-pointer hover:scale-[1.02] transition-all">
-       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-4">
-         <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-4xl">
-          🎮
-         </div>
-         <div>
-          <h3 class="text-white font-bold text-xl">3. Práctica: Retos de Programación</h3>
-          <p class="text-purple-100">Programa a ROBI para resolver laberintos</p>
-         </div>
-        </div>
-        <div class="flex items-center gap-2">
-         <div id="module-3-stars" class="flex gap-1"></div>
-         <svg class="w-8 h-8 text-white/50" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" />
-         </svg>
-        </div>
-       </div>
-      </div>
-     </div>
-     <div class="mt-8 text-center"><button id="reset-progress-btn" class="text-indigo-400 hover:text-indigo-300 text-sm underline"> Reiniciar progreso </button>
-     </div>
-    </div>
-   </div><!-- Module 1: Sequence Activity -->
-   <div id="module-1-screen" class="hidden min-h-full p-6">
-    <div class="max-w-2xl mx-auto"><button id="back-from-m1" class="flex items-center gap-2 text-indigo-300 hover:text-white mb-6 transition-all">
-      <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" />
-      </svg> Volver al menú </button>
-     <div class="bg-white/10 backdrop-blur rounded-2xl p-6 mb-6">
-      <div class="flex items-center gap-3 mb-4"><span class="text-3xl">📋</span>
-       <h2 class="text-2xl font-bold text-white">Exploración: Secuencias</h2>
-      </div>
-      <p class="text-indigo-200 mb-4">Una <strong class="text-yellow-400">secuencia</strong> es un conjunto de pasos ordenados para lograr algo. ¡Ordena los pasos correctamente!</p>
-      <div id="sequence-progress" class="flex gap-2 mt-4"><span id="challenge-1-badge" class="px-3 py-1 bg-emerald-500 text-white rounded-full text-sm font-semibold">✓ Lavarse las manos</span> <span id="challenge-2-badge" class="px-3 py-1 bg-indigo-600 text-indigo-200 rounded-full text-sm font-semibold">Preparar frutas</span>
-      </div>
-     </div>
-     <div id="sequence-challenge" class="bg-white/10 backdrop-blur rounded-2xl p-6 mb-6">
-      <h3 id="sequence-title" class="text-xl font-bold text-white mb-4">🧴 ¿Cómo lavarse las manos?</h3>
-      <p class="text-indigo-300 mb-4">Arrastra los pasos al orden correcto:</p>
-      <div id="sequence-items" class="space-y-3 mb-6"><!-- Steps will be generated dynamically -->
-      </div><button id="check-sequence-btn" class="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold rounded-xl hover:from-emerald-400 hover:to-teal-400 transition-all"> ✓ Verificar Secuencia </button>
-     </div>
-     <div id="sequence-feedback" class="hidden bg-white/10 backdrop-blur rounded-2xl p-6 text-center">
-      <div id="sequence-result"></div>
-     </div>
-    </div>
-   </div><!-- Module 2: Algorithm Learning -->
-   <div id="module-2-screen" class="hidden min-h-full p-6">
-    <div class="max-w-2xl mx-auto"><button id="back-from-m2" class="flex items-center gap-2 text-indigo-300 hover:text-white mb-6 transition-all">
-      <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" />
-      </svg> Volver al menú </button>
-     <div class="bg-white/10 backdrop-blur rounded-2xl p-6 mb-6">
-      <div class="flex items-center gap-3 mb-4"><span class="text-3xl">🤖</span>
-       <h2 class="text-2xl font-bold text-white">Aprendizaje: Algoritmos</h2>
-      </div>
-     </div>
-     <div id="algorithm-lesson" class="space-y-6">
-      <div class="bg-gradient-to-r from-blue-600/50 to-indigo-600/50 rounded-2xl p-6 slide-in">
-       <h3 class="text-xl font-bold text-white mb-3">¿Qué es un algoritmo?</h3>
-       <p class="text-indigo-100 leading-relaxed">Un <strong class="text-yellow-400">algoritmo</strong> es como una receta: una lista de instrucciones paso a paso que una computadora (¡o un robot!) puede seguir para resolver un problema.</p>
-      </div>
-      <div class="bg-white/10 rounded-2xl p-6">
-       <h3 class="text-lg font-bold text-white mb-4">📍 Ejemplo: Algoritmo para ir al colegio</h3>
-       <div class="space-y-2">
-        <div class="flex items-center gap-3 p-3 bg-indigo-600/30 rounded-xl"><span class="w-8 h-8 bg-yellow-500 text-indigo-900 rounded-full flex items-center justify-center font-bold">1</span> <span class="text-white">Despertarse</span>
-        </div>
-        <div class="flex items-center gap-3 p-3 bg-indigo-600/30 rounded-xl"><span class="w-8 h-8 bg-yellow-500 text-indigo-900 rounded-full flex items-center justify-center font-bold">2</span> <span class="text-white">Bañarse y vestirse</span>
-        </div>
-        <div class="flex items-center gap-3 p-3 bg-indigo-600/30 rounded-xl"><span class="w-8 h-8 bg-yellow-500 text-indigo-900 rounded-full flex items-center justify-center font-bold">3</span> <span class="text-white">Desayunar</span>
-        </div>
-        <div class="flex items-center gap-3 p-3 bg-indigo-600/30 rounded-xl"><span class="w-8 h-8 bg-yellow-500 text-indigo-900 rounded-full flex items-center justify-center font-bold">4</span> <span class="text-white">Tomar el transporte</span>
-        </div>
-        <div class="flex items-center gap-3 p-3 bg-indigo-600/30 rounded-xl"><span class="w-8 h-8 bg-yellow-500 text-indigo-900 rounded-full flex items-center justify-center font-bold">5</span> <span class="text-white">Llegar al colegio</span>
-        </div>
-       </div>
-      </div>
-      <div class="bg-white/10 rounded-2xl p-6">
-       <h3 class="text-lg font-bold text-white mb-4">🧩 ¿Qué patrón ves?</h3>
-       <p class="text-indigo-200 mb-4">Completa la secuencia:</p>
-       <div class="flex items-center justify-center gap-4 mb-4 text-4xl"><span>🔵</span> <span>🔴</span> <span>🔵</span> <span>🔴</span> <span>🔵</span> <span id="pattern-answer" class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">?</span>
-       </div>
-       <div class="flex justify-center gap-4"><button class="pattern-btn px-6 py-3 bg-blue-500 rounded-xl text-2xl hover:bg-blue-400 transition-all" data-answer="🔵">🔵</button> <button class="pattern-btn px-6 py-3 bg-red-500 rounded-xl text-2xl hover:bg-red-400 transition-all" data-answer="🔴">🔴</button>
-       </div>
-      </div>
-      <div id="pattern-feedback" class="hidden text-center py-4"></div><button id="complete-m2-btn" class="w-full py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold text-lg rounded-xl hover:from-blue-400 hover:to-indigo-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed" disabled> ⭐ Completar Módulo </button>
-     </div>
-    </div>
-   </div><!-- Module 3: Programming Practice -->
-   <div id="module-3-screen" class="hidden min-h-full p-6">
-    <div class="max-w-4xl mx-auto"><button id="back-from-m3" class="flex items-center gap-2 text-indigo-300 hover:text-white mb-6 transition-all">
-      <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" />
-      </svg> Volver al menú </button>
-     <div class="bg-white/10 backdrop-blur rounded-2xl p-4 mb-6">
-      <div class="flex items-center justify-between">
-       <div class="flex items-center gap-3"><span class="text-3xl">🎮</span>
-        <div>
-         <h2 class="text-xl font-bold text-white">Práctica: Programa a <span id="robot-name-display">ROBI</span></h2>
-         <p id="level-indicator" class="text-indigo-300 text-sm">Nivel 1 de 3</p>
-        </div>
-       </div>
-       <div class="flex items-center gap-2 bg-yellow-500/20 px-3 py-1 rounded-full"><span class="text-yellow-400">⭐</span> <span id="level-stars" class="text-yellow-400 font-bold">0/3</span>
-       </div>
-      </div>
-     </div>
-     <div class="grid md:grid-cols-2 gap-6"><!-- Grid Area -->
-      <div class="bg-white/10 backdrop-blur rounded-2xl p-4">
-       <h3 class="text-white font-bold mb-3">🗺️ Mapa del Reto</h3>
-       <div id="game-grid" class="grid grid-cols-5 gap-1 bg-indigo-950 p-2 rounded-xl aspect-square"><!-- Grid cells generated dynamically -->
-       </div>
-       <div class="mt-4 flex items-center justify-center gap-4 text-sm">
-        <div class="flex items-center gap-2">
-         <div class="w-6 h-6 bg-blue-500 rounded flex items-center justify-center">
-          🤖
-         </div><span class="text-indigo-300">Robot</span>
-        </div>
-        <div class="flex items-center gap-2">
-         <div class="w-6 h-6 bg-yellow-500 rounded flex items-center justify-center">
-          ⭐
-         </div><span class="text-indigo-300">Meta</span>
-        </div>
-        <div class="flex items-center gap-2">
-         <div class="w-6 h-6 bg-gray-700 rounded"></div><span class="text-indigo-300">Obstáculo</span>
-        </div>
-       </div>
-      </div><!-- Commands Area -->
-      <div class="bg-white/10 backdrop-blur rounded-2xl p-4">
-       <h3 class="text-white font-bold mb-3">🎛️ Comandos Disponibles</h3>
-       <div id="command-palette" class="grid grid-cols-2 gap-2 mb-4"><button class="command-block p-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl text-white font-bold flex items-center justify-center gap-2" data-command="up"> ⬆️ Arriba </button> <button class="command-block p-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl text-white font-bold flex items-center justify-center gap-2" data-command="down"> ⬇️ Abajo </button> <button class="command-block p-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl text-white font-bold flex items-center justify-center gap-2" data-command="left"> ⬅️ Izquierda </button> <button class="command-block p-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl text-white font-bold flex items-center justify-center gap-2" data-command="right"> ➡️ Derecha </button>
-       </div>
-       <h3 class="text-white font-bold mb-2">📝 Tu Programa:</h3>
-       <div id="program-area" class="min-h-[120px] bg-indigo-950/50 rounded-xl p-3 flex flex-wrap gap-2 content-start mb-4">
-        <p id="empty-program" class="text-indigo-400 text-sm w-full text-center py-4">Haz clic en los comandos para agregar instrucciones</p>
-       </div>
-       <div class="flex gap-2"><button id="clear-program-btn" class="flex-1 py-2 bg-red-500/20 text-red-300 font-semibold rounded-xl hover:bg-red-500/30 transition-all"> 🗑️ Limpiar </button> <button id="run-program-btn" class="flex-1 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-indigo-900 font-bold rounded-xl hover:from-yellow-400 hover:to-orange-400 transition-all"> ▶️ Ejecutar </button>
-       </div>
-      </div>
-     </div>
-     <div id="game-feedback" class="hidden mt-6 bg-white/10 backdrop-blur rounded-2xl p-6 text-center"></div>
-    </div>
-   </div><!-- Success Modal -->
-   <div id="success-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-    <div class="bg-gradient-to-br from-indigo-800 to-purple-800 rounded-3xl p-8 max-w-md w-full text-center">
-     <div class="text-6xl mb-4 celebrate">
-      🎉
-     </div>
-     <h2 class="text-3xl font-bold text-white mb-2">¡Excelente!</h2>
-     <p id="success-message" class="text-indigo-200 text-lg mb-6">Has completado el reto</p>
-     <div class="flex justify-center gap-1 mb-6">
-      <svg class="w-10 h-10 star-icon" viewbox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-      </svg>
-     </div><button id="close-success-btn" class="px-8 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-indigo-900 font-bold rounded-xl hover:from-yellow-300 hover:to-orange-400 transition-all"> Continuar </button>
-    </div>
-   </div>
-  </div>
-  <script>
-    // App Configuration
-    const defaultConfig = {
-      app_title: 'Pensamiento Computacional',
-      welcome_message: '¡Aprende a pensar como un programador!',
-      robot_name: 'ROBI',
-      primary_color: '#4F46E5',
-      secondary_color: '#1E1B4B',
-      accent_color: '#FBBF24',
-      text_color: '#E0E7FF',
-      surface_color: '#312E81'
-    };
 
-    let config = { ...defaultConfig };
-    let currentUserData = null;
-    let allUserData = [];
-
-    // Sequence Challenge Data
-    const sequenceChallenges = [
-      {
-        title: '🧴 ¿Cómo lavarse las manos?',
-        steps: ['Mojarse las manos', 'Aplicar jabón', 'Frotar por 20 segundos', 'Enjuagar con agua', 'Secarse las manos'],
-        correctOrder: [0, 1, 2, 3, 4]
-      },
-      {
-        title: '🥤 ¿Cómo preparar un jugo?',
-        steps: ['Elegir la fruta', 'Lavar la fruta', 'Pelar y cortar', 'Licuar con agua', 'Servir en un vaso'],
-        correctOrder: [0, 1, 2, 3, 4]
-      }
-    ];
-
-    // Game Levels
-    const gameLevels = [
-      {
-        grid: [
-          [0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0]
-        ],
-        robot: { x: 0, y: 2 },
-        goal: { x: 4, y: 2 },
-        hint: 'Mueve a ROBI hacia la derecha'
-      },
-      {
-        grid: [
-          [0, 0, 0, 0, 0],
-          [0, 1, 1, 1, 0],
-          [0, 0, 0, 0, 0],
-          [0, 1, 1, 1, 0],
-          [0, 0, 0, 0, 0]
-        ],
-        robot: { x: 0, y: 0 },
-        goal: { x: 4, y: 4 },
-        hint: 'Evita los obstáculos grises'
-      },
-      {
-        grid: [
-          [0, 0, 1, 0, 0],
-          [0, 0, 1, 0, 0],
-          [0, 0, 0, 0, 1],
-          [1, 1, 0, 0, 1],
-          [0, 0, 0, 0, 0]
-        ],
-        robot: { x: 0, y: 0 },
-        goal: { x: 4, y: 4 },
-        hint: 'Planifica tu ruta con cuidado'
-      }
-    ];
-
-    let currentLevel = 0;
-    let currentProgram = [];
-    let robotPosition = { x: 0, y: 0 };
-    let sequenceOrder = [];
-    let currentChallengeIndex = 0;
-    let patternCompleted = false;
-
-    // Initialize Element SDK
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange: async (newConfig) => {
-          config = { ...config, ...newConfig };
-          updateUI();
-        },
-        mapToCapabilities: (cfg) => ({
-          recolorables: [
-            {
-              get: () => cfg.primary_color || defaultConfig.primary_color,
-              set: (v) => { cfg.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); }
-            },
-            {
-              get: () => cfg.secondary_color || defaultConfig.secondary_color,
-              set: (v) => { cfg.secondary_color = v; window.elementSdk.setConfig({ secondary_color: v }); }
-            },
-            {
-              get: () => cfg.accent_color || defaultConfig.accent_color,
-              set: (v) => { cfg.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); }
-            },
-            {
-              get: () => cfg.text_color || defaultConfig.text_color,
-              set: (v) => { cfg.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
-            },
-            {
-              get: () => cfg.surface_color || defaultConfig.surface_color,
-              set: (v) => { cfg.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }
-            }
-          ],
-          borderables: [],
-          fontEditable: undefined,
-          fontSizeable: undefined
-        }),
-        mapToEditPanelValues: (cfg) => new Map([
-          ['app_title', cfg.app_title || defaultConfig.app_title],
-          ['welcome_message', cfg.welcome_message || defaultConfig.welcome_message],
-          ['robot_name', cfg.robot_name || defaultConfig.robot_name]
-        ])
-      });
-    }
-
-    // Initialize Data SDK
-    const dataHandler = {
-      onDataChanged(data) {
-        allUserData = data;
-        if (data.length > 0) {
-          currentUserData = data[0];
-          updateUserDisplay();
-        }
-      }
-    };
-
-    async function initDataSdk() {
-      if (window.dataSdk) {
-        const result = await window.dataSdk.init(dataHandler);
-        if (!result.isOk) {
-          console.error('Failed to initialize Data SDK');
-        }
-      }
-    }
-
-    initDataSdk();
-
-    function updateUI() {
-      const title = config.app_title || defaultConfig.app_title;
-      const welcome = config.welcome_message || defaultConfig.welcome_message;
-      const robotName = config.robot_name || defaultConfig.robot_name;
-
-      document.getElementById('main-title').textContent = title;
-      document.getElementById('welcome-text').textContent = welcome;
-      
-      const robotDisplays = document.querySelectorAll('#robot-name-display');
-      robotDisplays.forEach(el => el.textContent = robotName);
-
-      // Update colors
-      const primary = config.primary_color || defaultConfig.primary_color;
-      const secondary = config.secondary_color || defaultConfig.secondary_color;
-      const accent = config.accent_color || defaultConfig.accent_color;
-      
-      document.documentElement.style.setProperty('--primary-color', primary);
-      document.documentElement.style.setProperty('--secondary-color', secondary);
-      document.documentElement.style.setProperty('--accent-color', accent);
-    }
-
-    function updateUserDisplay() {
-      if (!currentUserData) return;
-      
-      document.getElementById('user-greeting').textContent = currentUserData.student_name;
-      document.getElementById('total-stars').textContent = currentUserData.stars_earned || 0;
-      
-      const completed = currentUserData.completed_challenges ? currentUserData.completed_challenges.split(',') : [];
-      
-      // Update module stars
-      updateModuleStars('module-1-stars', completed.includes('m1') ? 1 : 0, 1);
-      updateModuleStars('module-2-stars', completed.includes('m2') ? 1 : 0, 1);
-      updateModuleStars('module-3-stars', completed.filter(c => c.startsWith('m3-')).length, 3);
-      
-      document.getElementById('level-stars').textContent = `${completed.filter(c => c.startsWith('m3-')).length}/3`;
-    }
-
-    function updateModuleStars(elementId, earned, total) {
-      const container = document.getElementById(elementId);
-      container.innerHTML = '';
-      for (let i = 0; i < total; i++) {
-        const star = document.createElement('span');
-        star.innerHTML = i < earned ? '⭐' : '☆';
-        star.className = i < earned ? 'text-yellow-400' : 'text-white/30';
-        container.appendChild(star);
-      }
-    }
-
-    async function saveProgress(challenge, stars = 1) {
-      if (!currentUserData || !window.dataSdk) return;
-      
-      let completed = currentUserData.completed_challenges ? currentUserData.completed_challenges.split(',').filter(c => c) : [];
-      if (!completed.includes(challenge)) {
-        completed.push(challenge);
-        const newStars = (currentUserData.stars_earned || 0) + stars;
-        
-        currentUserData.completed_challenges = completed.join(',');
-        currentUserData.stars_earned = newStars;
-        currentUserData.last_activity = new Date().toISOString();
-        
-        await window.dataSdk.update(currentUserData);
-      }
-    }
-
-    // Screen Navigation
-    function showScreen(screenId) {
-      const screens = ['welcome-screen', 'main-menu', 'module-1-screen', 'module-2-screen', 'module-3-screen'];
-      screens.forEach(id => {
-        document.getElementById(id).classList.add('hidden');
-      });
-      document.getElementById(screenId).classList.remove('hidden');
-    }
-
-    // Welcome Screen
-    document.getElementById('start-btn').addEventListener('click', async () => {
-      const nameInput = document.getElementById('student-name-input');
-      const name = nameInput.value.trim();
-      
-      if (!name) {
-        nameInput.classList.add('border-red-500');
-        nameInput.placeholder = 'Por favor escribe tu nombre';
-        return;
-      }
-
-      if (allUserData.length >= 999) {
-        showFeedback('Se ha alcanzado el límite de usuarios', false);
-        return;
-      }
-
-      if (window.dataSdk) {
-        const result = await window.dataSdk.create({
-          student_name: name,
-          current_level: 1,
-          stars_earned: 0,
-          completed_challenges: '',
-          last_activity: new Date().toISOString()
-        });
-        
-        if (!result.isOk) {
-          console.error('Error saving user');
-        }
-      }
-
-      showScreen('main-menu');
-    });
-
-    document.getElementById('continue-btn')?.addEventListener('click', () => {
-      showScreen('main-menu');
-    });
-
-    // Module Navigation
-    document.getElementById('module-1').addEventListener('click', () => {
-      showScreen('module-1-screen');
-      currentChallengeIndex = 0;
-      initSequenceChallenge();
-    });
-
-    document.getElementById('module-2').addEventListener('click', () => {
-      showScreen('module-2-screen');
-      patternCompleted = false;
-      document.getElementById('complete-m2-btn').disabled = true;
-    });
-
-    document.getElementById('module-3').addEventListener('click', () => {
-      showScreen('module-3-screen');
-      initGameLevel();
-    });
-
-    // Back buttons
-    ['back-from-m1', 'back-from-m2', 'back-from-m3'].forEach(id => {
-      document.getElementById(id).addEventListener('click', () => {
-        showScreen('main-menu');
-        updateUserDisplay();
-      });
-    });
-
-    // Module 1: Sequence Challenge
-    function initSequenceChallenge() {
-      const challenge = sequenceChallenges[currentChallengeIndex];
-      document.getElementById('sequence-title').textContent = challenge.title;
-      
-      // Update progress badges
-      const badge1 = document.getElementById('challenge-1-badge');
-      const badge2 = document.getElementById('challenge-2-badge');
-      
-      if (currentChallengeIndex === 0) {
-        badge1.className = 'px-3 py-1 bg-indigo-600 text-indigo-200 rounded-full text-sm font-semibold';
-        badge2.className = 'px-3 py-1 bg-indigo-600 text-indigo-200 rounded-full text-sm font-semibold';
-      } else {
-        badge1.className = 'px-3 py-1 bg-emerald-500 text-white rounded-full text-sm font-semibold';
-        badge2.className = 'px-3 py-1 bg-emerald-500 text-white rounded-full text-sm font-semibold';
-      }
-      
-      const container = document.getElementById('sequence-items');
-      container.innerHTML = '';
-      
-      // Shuffle steps
-      const shuffled = [...challenge.steps].map((step, idx) => ({ step, originalIdx: idx }));
-      shuffled.sort(() => Math.random() - 0.5);
-      
-      shuffled.forEach((item, displayIdx) => {
-        const div = document.createElement('div');
-        div.className = 'sequence-item flex items-center gap-3 p-3 bg-indigo-600/30 rounded-xl cursor-move hover:bg-indigo-600/50 transition-all';
-        div.draggable = true;
-        div.dataset.originalIndex = item.originalIdx;
-        div.innerHTML = `
-          <span class="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center font-bold text-white step-number">${displayIdx + 1}</span>
-          <span class="text-white flex-1">${item.step}</span>
-          <span class="text-indigo-400">⋮⋮</span>
-        `;
-        
-        div.addEventListener('dragstart', handleDragStart);
-        div.addEventListener('dragover', handleDragOver);
-        div.addEventListener('drop', handleDrop);
-        div.addEventListener('dragend', handleDragEnd);
-        
-        container.appendChild(div);
-      });
-      
-      document.getElementById('sequence-feedback').classList.add('hidden');
-    }
-
-    let draggedItem = null;
-
-    function handleDragStart(e) {
-      draggedItem = this;
-      this.classList.add('opacity-50');
-    }
-
-    function handleDragOver(e) {
-      e.preventDefault();
-      this.classList.add('bg-indigo-500/50');
-    }
-
-    function handleDrop(e) {
-      e.preventDefault();
-      this.classList.remove('bg-indigo-500/50');
-      
-      if (draggedItem !== this) {
-        const container = document.getElementById('sequence-items');
-        
-        // Swap in DOM
-        if (draggedItem.compareDocumentPosition(this) === Node.DOCUMENT_POSITION_FOLLOWING) {
-          draggedItem.parentNode.insertBefore(this, draggedItem);
-        } else {
-          draggedItem.parentNode.insertBefore(draggedItem, this);
-        }
-        
-        updateSequenceNumbers();
-      }
-    }
-
-    function handleDragEnd() {
-      this.classList.remove('opacity-50');
-      document.querySelectorAll('.sequence-item').forEach(item => {
-        item.classList.remove('bg-indigo-500/50');
-      });
-    }
-
-    function updateSequenceNumbers() {
-      const items = document.querySelectorAll('.sequence-item');
-      items.forEach((item, idx) => {
-        item.querySelector('.step-number').textContent = idx + 1;
-      });
-    }
-
-    function getCurrentSequenceOrder() {
-      const items = document.querySelectorAll('.sequence-item');
-      return Array.from(items).map(item => parseInt(item.dataset.originalIndex));
-    }
-
-    document.getElementById('check-sequence-btn').addEventListener('click', async () => {
-      const challenge = sequenceChallenges[currentChallengeIndex];
-      const currentOrder = getCurrentSequenceOrder();
-      const isCorrect = currentOrder.every((val, idx) => val === challenge.correctOrder[idx]);
-      
-      const feedback = document.getElementById('sequence-feedback');
-      const result = document.getElementById('sequence-result');
-      feedback.classList.remove('hidden');
-      
-      if (isCorrect) {
-        result.innerHTML = `
-          <div class="text-5xl mb-3">🎉</div>
-          <h3 class="text-2xl font-bold text-green-400 mb-2">¡Correcto!</h3>
-          <p class="text-indigo-200">Has ordenado la secuencia perfectamente</p>
-        `;
-        
-        // Advance to next challenge
-        if (currentChallengeIndex < sequenceChallenges.length - 1) {
-          setTimeout(() => {
-            currentChallengeIndex++;
-            initSequenceChallenge();
-          }, 2000);
-        } else {
-          // All challenges completed
-          await saveProgress('m1');
-          showSuccessModal('¡Has completado el módulo de Secuencias!');
-        }
-      } else {
-        result.innerHTML = `
-          <div class="text-5xl mb-3">🤔</div>
-          <h3 class="text-2xl font-bold text-orange-400 mb-2">¡Casi!</h3>
-          <p class="text-indigo-200">Revisa el orden de los pasos e intenta de nuevo</p>
-        `;
-      }
-    });
-
-    // Module 2: Pattern Recognition
-    document.querySelectorAll('.pattern-btn').forEach(btn => {
-      btn.addEventListener('click', async function() {
-        const answer = this.dataset.answer;
-        const feedbackEl = document.getElementById('pattern-feedback');
-        feedbackEl.classList.remove('hidden');
-        
-        if (answer === '🔴') {
-          document.getElementById('pattern-answer').textContent = '🔴';
-          feedbackEl.innerHTML = '<span class="text-green-400 text-lg font-bold">✓ ¡Correcto! El patrón es: azul, rojo, azul, rojo...</span>';
-          patternCompleted = true;
-          document.getElementById('complete-m2-btn').disabled = false;
-        } else {
-          feedbackEl.innerHTML = '<span class="text-orange-400 text-lg font-bold">✗ Observa el patrón con cuidado...</span>';
-        }
-      });
-    });
-
-    document.getElementById('complete-m2-btn').addEventListener('click', async () => {
-      if (patternCompleted) {
-        await saveProgress('m2');
-        showSuccessModal('¡Has completado el módulo de Algoritmos!');
-      }
-    });
-
-    // Module 3: Programming Game
-    function initGameLevel() {
-      const level = gameLevels[currentLevel];
-      robotPosition = { ...level.robot };
-      currentProgram = [];
-      
-      document.getElementById('level-indicator').textContent = `Nivel ${currentLevel + 1} de ${gameLevels.length}`;
-      document.getElementById('empty-program').classList.remove('hidden');
-      document.getElementById('program-area').innerHTML = '<p id="empty-program" class="text-indigo-400 text-sm w-full text-center py-4">Haz clic en los comandos para agregar instrucciones</p>';
-      document.getElementById('game-feedback').classList.add('hidden');
-      
-      renderGrid();
-    }
-
-    function renderGrid() {
-      const level = gameLevels[currentLevel];
-      const grid = document.getElementById('game-grid');
-      grid.innerHTML = '';
-      
-      for (let y = 0; y < 5; y++) {
-        for (let x = 0; x < 5; x++) {
-          const cell = document.createElement('div');
-          cell.className = 'grid-cell aspect-square rounded flex items-center justify-center text-lg';
-          
-          if (robotPosition.x === x && robotPosition.y === y) {
-            cell.className += ' bg-blue-500';
-            cell.textContent = '🤖';
-          } else if (level.goal.x === x && level.goal.y === y) {
-            cell.className += ' bg-yellow-500';
-            cell.textContent = '⭐';
-          } else if (level.grid[y][x] === 1) {
-            cell.className += ' bg-gray-700';
-          } else {
-            cell.className += ' bg-indigo-800/50';
-          }
-          
-          grid.appendChild(cell);
-        }
-      }
-    }
-
-    // Add commands to program
-    document.querySelectorAll('.command-block').forEach(btn => {
-      btn.addEventListener('click', function() {
-        if (currentProgram.length >= 20) return;
-        
-        const command = this.dataset.command;
-        currentProgram.push(command);
-        
-        document.getElementById('empty-program')?.classList.add('hidden');
-        
-        const programArea = document.getElementById('program-area');
-        const emptyMsg = document.getElementById('empty-program');
-        if (emptyMsg) emptyMsg.remove();
-        
-        const cmdEl = document.createElement('span');
-        cmdEl.className = 'px-3 py-1 bg-indigo-600 text-white text-sm rounded-lg';
-        
-        const icons = { up: '⬆️', down: '⬇️', left: '⬅️', right: '➡️' };
-        cmdEl.textContent = icons[command];
-        programArea.appendChild(cmdEl);
-      });
-    });
-
-    document.getElementById('clear-program-btn').addEventListener('click', () => {
-      currentProgram = [];
-      const programArea = document.getElementById('program-area');
-      programArea.innerHTML = '<p id="empty-program" class="text-indigo-400 text-sm w-full text-center py-4">Haz clic en los comandos para agregar instrucciones</p>';
-      initGameLevel();
-    });
-
-    document.getElementById('run-program-btn').addEventListener('click', async () => {
-      if (currentProgram.length === 0) return;
-      
-      const level = gameLevels[currentLevel];
-      robotPosition = { ...level.robot };
-      
-      let hitObstacle = false;
-      let outOfBounds = false;
-      
-      for (const cmd of currentProgram) {
-        await new Promise(resolve => setTimeout(resolve, 400));
-        
-        let newX = robotPosition.x;
-        let newY = robotPosition.y;
-        
-        switch(cmd) {
-          case 'up': newY--; break;
-          case 'down': newY++; break;
-          case 'left': newX--; break;
-          case 'right': newX++; break;
-        }
-        
-        if (newX < 0 || newX > 4 || newY < 0 || newY > 4) {
-          outOfBounds = true;
-          break;
-        }
-        
-        if (level.grid[newY][newX] === 1) {
-          hitObstacle = true;
-          break;
-        }
-        
-        robotPosition = { x: newX, y: newY };
-        renderGrid();
-      }
-      
-      const feedback = document.getElementById('game-feedback');
-      feedback.classList.remove('hidden');
-      
-      if (robotPosition.x === level.goal.x && robotPosition.y === level.goal.y) {
-        feedback.innerHTML = `
-          <div class="text-5xl mb-3">🎉</div>
-          <h3 class="text-2xl font-bold text-green-400 mb-2">¡Nivel Completado!</h3>
-          <p class="text-indigo-200">${config.robot_name || 'ROBI'} llegó a la meta</p>
-        `;
-        
-        await saveProgress(`m3-${currentLevel + 1}`);
-        
-        if (currentLevel < gameLevels.length - 1) {
-          setTimeout(() => {
-            currentLevel++;
-            initGameLevel();
-          }, 2000);
-        } else {
-          showSuccessModal('¡Has completado todos los niveles de programación!');
-        }
-      } else if (hitObstacle) {
-        feedback.innerHTML = `
-          <div class="text-5xl mb-3">💥</div>
-          <h3 class="text-2xl font-bold text-orange-400 mb-2">¡Chocaste!</h3>
-          <p class="text-indigo-200">${config.robot_name || 'ROBI'} golpeó un obstáculo. ¡Intenta de nuevo!</p>
-        `;
-      } else if (outOfBounds) {
-        feedback.innerHTML = `
-          <div class="text-5xl mb-3">🚧</div>
-          <h3 class="text-2xl font-bold text-orange-400 mb-2">¡Fuera del mapa!</h3>
-          <p class="text-indigo-200">${config.robot_name || 'ROBI'} salió del área. ¡Intenta de nuevo!</p>
-        `;
-      } else {
-        feedback.innerHTML = `
-          <div class="text-5xl mb-3">🤔</div>
-          <h3 class="text-2xl font-bold text-orange-400 mb-2">¡Casi!</h3>
-          <p class="text-indigo-200">${config.robot_name || 'ROBI'} no llegó a la meta. Añade más instrucciones.</p>
-        `;
-      }
-    });
-
-    // Success Modal
-    function showSuccessModal(message) {
-      document.getElementById('success-message').textContent = message;
-      document.getElementById('success-modal').classList.remove('hidden');
-    }
-
-    document.getElementById('close-success-btn').addEventListener('click', () => {
-      document.getElementById('success-modal').classList.add('hidden');
-      showScreen('main-menu');
-      updateUserDisplay();
-    });
-
-    // Reset Progress
-    document.getElementById('reset-progress-btn').addEventListener('click', async () => {
-      if (currentUserData && window.dataSdk) {
-        currentUserData.stars_earned = 0;
-        currentUserData.completed_challenges = '';
-        currentUserData.current_level = 1;
-        await window.dataSdk.update(currentUserData);
-        updateUserDisplay();
-        currentLevel = 0;
-      }
-    });
-
-    // Initial UI update
-    updateUI();
-  </script>
-  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9df62c21e6dc26ac',t:'MTc3NDAyNDk3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9df7050ca6de26ac',t:'MTc3NDAzMzg1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
